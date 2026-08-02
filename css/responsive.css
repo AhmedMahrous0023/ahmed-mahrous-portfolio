@@ -1,0 +1,342 @@
+/* =========================================================
+   Responsive — Navbar, Hero & Global Breakpoints
+   ========================================================= */
+
+/* Large desktops — slightly roomier nav */
+@media (min-width: 1200px) {
+  .nav__list {
+    gap: 0.25rem;
+  }
+
+  .nav__link {
+    padding: 0.55rem 0.95rem;
+  }
+}
+
+/* Laptops / small desktops — tighten link spacing */
+@media (max-width: 1100px) {
+  .nav__link {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.84rem;
+  }
+
+  .nav__actions {
+    gap: 0.55rem;
+  }
+}
+
+/* Tablet landscape — stack hero / about */
+@media (max-width: 1024px) {
+  .hero__container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero__content {
+    max-width: 40rem;
+    text-align: start;
+  }
+
+  .hero__visual {
+    order: -1;
+    max-width: 380px;
+    margin-inline: auto;
+  }
+
+  .hero {
+    padding-top: var(--space-8);
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about__media {
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .project-modal__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .project-modal__gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact__grid {
+    max-width: none;
+  }
+}
+
+/* Tablet — collapse primary nav into drawer */
+@media (max-width: 960px) {
+  .nav__toggle {
+    display: grid;
+  }
+
+  .nav__list {
+    position: fixed;
+    top: calc(var(--header-h) + 0.75rem);
+    inset-inline-end: 1.25rem;
+    inset-inline-start: auto;
+    z-index: 110;
+    width: min(20.5rem, calc(100vw - 2.5rem));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.75rem) scale(0.98);
+    transform-origin: top var(--menu-origin, right);
+    transition:
+      opacity var(--duration) var(--ease),
+      transform var(--duration) var(--ease),
+      visibility var(--duration) var(--ease);
+  }
+
+  html[dir="ltr"] .nav__list {
+    --menu-origin: right;
+  }
+
+  html[dir="rtl"] .nav__list {
+    --menu-origin: left;
+  }
+
+  .nav__list.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .nav__link {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__link.is-active {
+    background: var(--accent-soft);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.25);
+  }
+
+  .nav__link:hover {
+    background: rgba(148, 163, 184, 0.1);
+  }
+
+  /* Hide CV label on tighter widths; icon remains */
+  .nav__actions .btn--ghost span {
+    display: none;
+  }
+
+  .nav__actions .btn--ghost {
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+  }
+}
+
+/* Compact language toggle on mid widths */
+@media (max-width: 720px) {
+  .lang-toggle__btn {
+    min-width: 2rem;
+    height: 1.75rem;
+    padding: 0 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .projects__search {
+    min-width: 0;
+  }
+}
+
+/* Phones */
+@media (max-width: 560px) {
+  :root {
+    --header-h: 4.15rem;
+  }
+
+  .container {
+    width: min(100% - 1.5rem, var(--container));
+  }
+
+  .logo__text {
+    font-size: 0.95rem;
+  }
+
+  .logo__mark {
+    width: 2.15rem;
+    height: 2.15rem;
+    font-size: 0.72rem;
+  }
+
+  .nav__list {
+    inset-inline-end: 0.75rem;
+    top: calc(var(--header-h) + 0.5rem);
+    width: min(100% - 1.5rem, 20.5rem);
+  }
+
+  .nav__actions {
+    gap: 0.4rem;
+  }
+
+  .theme-toggle,
+  .nav__toggle,
+  .nav__actions .btn--ghost {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: var(--space-6) 0 var(--space-12);
+  }
+
+  .hero__eyebrow {
+    font-size: 0.76rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero__stats {
+    gap: var(--space-5);
+  }
+
+  .hero__portrait {
+    width: min(100%, 320px);
+  }
+
+  .hero__status-chip {
+    inset-inline-start: 0.75rem;
+    bottom: 0.75rem;
+    font-size: 0.72rem;
+  }
+
+  .hero__float-card {
+    inset-inline-end: 0;
+    top: auto;
+    bottom: 3.5rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .section {
+    padding: var(--space-16) 0;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .skill-card {
+    min-height: 7.25rem;
+    padding: 1rem 0.9rem;
+  }
+
+  .skill-card__name {
+    font-size: 0.86rem;
+  }
+
+  .project-modal {
+    padding: 0.65rem;
+  }
+
+  .project-modal__content {
+    padding: 0.1rem 1rem 1.25rem;
+  }
+
+  .project-modal__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox__nav--prev,
+  .lightbox__nav--next {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .lightbox__img {
+    max-height: 70vh;
+  }
+
+  .project-modal__shot-hint {
+    opacity: 1;
+    transform: none;
+  }
+
+  .experience__timeline {
+    padding-inline-start: 1.25rem;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card--wide {
+    grid-column: auto;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .logo__text span:last-child {
+    display: none;
+  }
+
+  .lang-toggle__btn[data-lang="en"] {
+    min-width: 1.85rem;
+  }
+}

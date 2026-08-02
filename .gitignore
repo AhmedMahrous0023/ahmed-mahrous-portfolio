@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
+assets/images/PUT_YOUR_PHOTO_HERE.txt
+assets/images/profilee.jpg
+assets/images/profileee.jpg
+assets/cv/build-cv.ps1
